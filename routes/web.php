@@ -19,5 +19,5 @@ Route::get('/', function () {
         'title' => 'Home'
     ]);
 });
-
+Route::view('/about','about');
 Route::get("student", [StudentController::class, 'index']);
