@@ -15,7 +15,7 @@
           </tr>
         </thead>
         <tbody>
-        @foreach ($students as $index => $std)
+        @forelse ($students as $index => $std)
           <tr>
             <th scope="row">{{ $index+1 }}</th>
             <td>{{ $std->nama }}</td>
@@ -23,7 +23,11 @@
             <td>{{ $std->gender }}</td>
             <td>{{ $std->birth }}</td>
           </tr>
-        @endforeach
+        @empty
+            <tr>
+                <td colspan="5" class="text-center">Data is empty</td>
+            </tr>
+        @endforelse
         </tbody>
       </table>
     
