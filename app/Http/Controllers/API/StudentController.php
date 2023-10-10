@@ -9,15 +9,19 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
-    function get($id = null)
+    function get()
+    {
+            $students = student::get();
+            return response()->json(['msg' => 'data diambil', 'data' => $students], 200);
+    }
+
+    function show($id)
     {
         if (isset($id)) {
             $student = student::findOrfail($id);
             return response()->json(['msg' => 'data diambil', 'data' => $student], 200);
-        } else {
-            $students = student::get();
-            return response()->json(['msg' => 'data diambil', 'data' => $students], 200);
-        }
+        } 
+        return response()->(['msg' => 'Data tidak ada'], 404);
     }
 
     function store(StudentRequest $request)
