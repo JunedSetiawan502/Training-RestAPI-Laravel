@@ -28,7 +28,10 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        // create create logic here
+        return view('student/create', [
+            "title" => "Create Student"
+        ]);
     }
 
     /**
@@ -39,7 +42,16 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // store logic here
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'nrp' => 'required|size:9|unique:students',
+            'email' => 'required|email:dns|unique:students',
+            'major' => 'required'
+        ]);
+
+        student::create($validatedData);
+        return redirect('/student')->with('success', 'New student has been added!');
     }
 
     /**
