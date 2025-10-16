@@ -11,8 +11,8 @@ class StudentController extends Controller
 {
     function get()
     {
-            $students = student::get();
-            return response()->json(['msg' => 'data diambil', 'data' => $students], 200);
+        $students = student::get();
+        return response()->json(['msg' => 'data diambil', 'data' => $students], 200);
     }
 
     function show($id)
@@ -20,8 +20,8 @@ class StudentController extends Controller
         if (isset($id)) {
             $student = student::findOrfail($id);
             return response()->json(['msg' => 'data diambil', 'data' => $student], 200);
-        } 
-        return response()->(['msg' => 'Data tidak ada'], 404);
+        }
+        return response()->json(['msg' => 'Data tidak ada'], 404);
     }
 
     function store(StudentRequest $request)
