@@ -62,7 +62,11 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        //
+        $student = student::find($id);
+        return view('student/detail', [
+            "title" => "Detail Student",
+            "student" => $student
+        ]);
     }
 
     /**
@@ -73,7 +77,11 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $student = student::find($id);
+        return view('student/edit', [
+            "title" => "Edit Student",
+            "student" => $student
+        ]);
     }
 
     /**
