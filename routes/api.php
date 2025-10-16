@@ -18,11 +18,13 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::group(['prefix' => '/api'], function () {
+    // All routes defined here will be prefixed with 'v1'
+    Route::get('students', [StudentController::class, 'get']);
+    Route::get('student/{id}', [StudentController::class, 'show']);
 
-Route::get('students', [StudentController::class, 'get']);
-Route::get('student/{id}', [StudentController::class, 'get']);
+    Route::post('student', [StudentController::class, 'store']);
 
-Route::post('student', [StudentController::class, 'store']);
-
-Route::put('student/{id}', [StudentController::class, 'update']);
-Route::delete('student/{id}', [StudentController::class, 'destroy']);
+    Route::put('student/{id}', [StudentController::class, 'update']);
+    Route::delete('student/{id}', [StudentController::class, 'destroy']);
+});
